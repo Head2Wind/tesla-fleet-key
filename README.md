@@ -13,8 +13,11 @@ Public hosting for the **public** half of the Tesla Fleet API application key us
 
 **This repo is public on purpose.** A public key is meant to be published. The private key
 never leaves ADVM2: it lives in `home-automation/scripts/tesla-fleet-private-key.secret`,
-gitignored by `*.secret`. **Never commit any `*.secret`, `*-private*`, or `PRIVATE KEY`
-material here** — `git grep -n "PRIVATE"` must return nothing.
+gitignored by `*.secret`. **Never commit private key material here.** Check before every
+push: `git grep -n "PRIVATE KEY-----" HEAD` must print nothing.
+
+`.gitattributes` marks `*.pem` as `-text` so git never rewrites the key's line endings —
+the bytes served must be exactly the bytes committed.
 
 Rotating the key: generate a new pair in home-automation, replace the `.pem` here, push,
 then re-run the Fleet API partner registration (see `home-automation/teslamate/README.md`).
