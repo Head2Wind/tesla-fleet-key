@@ -1,0 +1,4 @@
+# Belt and braces: this repo is PUBLIC. Private key material must never land here.
+*.secret
+*private*
+*.key
